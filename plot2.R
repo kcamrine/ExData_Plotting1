@@ -20,6 +20,9 @@ household_power_consumption <- household_power_consumption[na.exclude(Date.Time
 #### plot data ###
 png("plot2.png",480,480,bg="transparent")
 #this all works given that the rows are in order based on date (which it is)
-plot(household_power_consumption$Global_active_power,type="l",ylab="Global active power (kilowatts)",xaxt = "n",xlab = "")
-axis(side=1,at=c(1,which(household_power_consumption$Date %in% names(table(household_power_consumption[,1]))[2])[1],length(household_power_consumption[,1])),labels=c("Thu","Fri","Sat")) 
+with(household_power_consumption, {
+  plot(Global_active_power,type="l",ylab="Global active power (kilowatts)",xaxt = "n",xlab = "")
+  axis(side=1,at=c(1,which(Date %in% names(table(Date))[2])[1],length(Date)),
+       labels=c("Thu","Fri","Sat")) 
+})
 dev.off()
